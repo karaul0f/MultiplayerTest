@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d5cs55h7ealh"]
+[gd_scene load_steps=3 format=3 uid="uid://d5cs55h7ealh"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3ovlj"]
+[ext_resource type="PackedScene" uid="uid://dwmuvurivcqjx" path="res://scenes/battle.tscn" id="2_j3whk"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_3ovlj")
+battle = ExtResource("2_j3whk")
 
 [node name="Menu" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -24,7 +26,8 @@ size_flags_stretch_ratio = 0.0
 layout_mode = 2
 text = "Host"
 
-[node name="TextEdit" type="TextEdit" parent="Menu"]
+[node name="ConnectionIP" type="TextEdit" parent="Menu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 placeholder_text = "Enter IP"
@@ -33,4 +36,8 @@ placeholder_text = "Enter IP"
 layout_mode = 2
 text = "Join"
 
+[node name="BattleInstance" type="Node" parent="."]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="Menu/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Menu/JoinButton" to="." method="_on_join_button_pressed"]

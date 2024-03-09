@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwmuvurivcqjx"]
+
+[ext_resource type="Texture2D" uid="uid://ndodeb7pjynk" path="res://images/table_background.png" id="1_b3dxj"]
+[ext_resource type="Texture2D" uid="uid://kt7wadbjdmbu" path="res://images/blank_attack_1.png" id="2_kckqb"]
+[ext_resource type="Texture2D" uid="uid://bvptgo8dx5dr8" path="res://images/blank_attack_3.png" id="3_vdm0p"]
+[ext_resource type="Script" path="res://scenes/card.gd" id="3_xd1pe"]
+[ext_resource type="Texture2D" uid="uid://ok0rgh3bmcnh" path="res://images/blank_deffence.png" id="4_1i77w"]
+[ext_resource type="Texture2D" uid="uid://bff0lekkoxkto" path="res://images/blank_health.png" id="5_oc6g0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o4cg1"]
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_b3dxj")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PlayerDeck" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(160, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Card" type="TextureRect" parent="MarginContainer/PlayerDeck"]
+layout_mode = 2
+texture = ExtResource("2_kckqb")
+script = ExtResource("3_xd1pe")
+
+[node name="Label" type="Label" parent="MarginContainer/PlayerDeck/Card"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.869
+anchor_right = 0.5
+anchor_bottom = 0.88
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Атака 2-12"
+label_settings = SubResource("LabelSettings_o4cg1")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/PlayerDeck"]
+layout_mode = 2
+texture = ExtResource("3_vdm0p")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/PlayerDeck"]
+layout_mode = 2
+texture = ExtResource("4_1i77w")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/PlayerDeck"]
+layout_mode = 2
+texture = ExtResource("5_oc6g0")
+
+[node name="EnemyDeck" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(160, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/EnemyDeck"]
+layout_mode = 2
+texture = ExtResource("2_kckqb")
+
+[node name="Label" type="Label" parent="MarginContainer/EnemyDeck/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.869
+anchor_right = 0.5
+anchor_bottom = 0.88
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Атака 2-12"
+label_settings = SubResource("LabelSettings_o4cg1")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/EnemyDeck"]
+layout_mode = 2
+texture = ExtResource("3_vdm0p")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/EnemyDeck"]
+layout_mode = 2
+texture = ExtResource("4_1i77w")
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/EnemyDeck"]
+layout_mode = 2
+texture = ExtResource("5_oc6g0")
+
+[connection signal="ready" from="MarginContainer/PlayerDeck" to="MarginContainer/PlayerDeck/Card" method="ready"]
+[connection signal="mouse_entered" from="MarginContainer/PlayerDeck/Card" to="MarginContainer/PlayerDeck/Card" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/PlayerDeck/Card" to="MarginContainer/PlayerDeck/Card" method="_on_mouse_exited"]
