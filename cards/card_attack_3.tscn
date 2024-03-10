@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrisrf5gfad3"]
+
+[ext_resource type="PackedScene" uid="uid://b4u35koixriab" path="res://cards/card.tscn" id="1_2msin"]
+[ext_resource type="Texture2D" uid="uid://bvptgo8dx5dr8" path="res://images/blank_attack_3.png" id="2_px6ya"]
+
+[node name="Card" instance=ExtResource("1_2msin")]
+texture = ExtResource("2_px6ya")
+
+[node name="CardInfo" parent="." index="0"]
+text = "Атака 5-6"

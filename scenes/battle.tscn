@@ -1,15 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwmuvurivcqjx"]
+[gd_scene load_steps=7 format=3 uid="uid://dwmuvurivcqjx"]
 
+[ext_resource type="Script" path="res://scenes/battle.gd" id="1_4t1u4"]
 [ext_resource type="Texture2D" uid="uid://ndodeb7pjynk" path="res://images/table_background.png" id="1_b3dxj"]
-[ext_resource type="Texture2D" uid="uid://kt7wadbjdmbu" path="res://images/blank_attack_1.png" id="2_kckqb"]
-[ext_resource type="Texture2D" uid="uid://bvptgo8dx5dr8" path="res://images/blank_attack_3.png" id="3_vdm0p"]
-[ext_resource type="Script" path="res://scenes/card.gd" id="3_xd1pe"]
-[ext_resource type="Texture2D" uid="uid://ok0rgh3bmcnh" path="res://images/blank_deffence.png" id="4_1i77w"]
-[ext_resource type="Texture2D" uid="uid://bff0lekkoxkto" path="res://images/blank_health.png" id="5_oc6g0"]
+[ext_resource type="PackedScene" uid="uid://bjqxus2eljkr4" path="res://cards/card_attack_1.tscn" id="2_pjlx0"]
+[ext_resource type="PackedScene" uid="uid://ccwcy0wjwvt33" path="res://cards/card_attack_2.tscn" id="3_hnuee"]
+[ext_resource type="PackedScene" uid="uid://crrisrf5gfad3" path="res://cards/card_attack_3.tscn" id="4_sxi0b"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_o4cg1"]
+[sub_resource type="LabelSettings" id="LabelSettings_bhoou"]
+font_size = 32
 font_color = Color(0, 0, 0, 1)
-shadow_size = 0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,6 +17,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4t1u4")
+cards = Array[PackedScene]([ExtResource("2_pjlx0"), ExtResource("3_hnuee"), ExtResource("4_sxi0b")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -42,80 +43,29 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="PlayerDeck" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Card" type="TextureRect" parent="MarginContainer/PlayerDeck"]
-layout_mode = 2
-texture = ExtResource("2_kckqb")
-script = ExtResource("3_xd1pe")
-
-[node name="Label" type="Label" parent="MarginContainer/PlayerDeck/Card"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.869
-anchor_right = 0.5
-anchor_bottom = 0.88
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Атака 2-12"
-label_settings = SubResource("LabelSettings_o4cg1")
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/PlayerDeck"]
-layout_mode = 2
-texture = ExtResource("3_vdm0p")
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/PlayerDeck"]
-layout_mode = 2
-texture = ExtResource("4_1i77w")
-
-[node name="TextureRect4" type="TextureRect" parent="MarginContainer/PlayerDeck"]
-layout_mode = 2
-texture = ExtResource("5_oc6g0")
-
 [node name="EnemyDeck" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 240)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/EnemyDeck"]
+[node name="PlayerHP" type="Label" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_kckqb")
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "HP: 100"
+label_settings = SubResource("LabelSettings_bhoou")
 
-[node name="Label" type="Label" parent="MarginContainer/EnemyDeck/TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.869
-anchor_right = 0.5
-anchor_bottom = 0.88
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Атака 2-12"
-label_settings = SubResource("LabelSettings_o4cg1")
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/EnemyDeck"]
+[node name="EnemyHP" type="Label" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("3_vdm0p")
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/EnemyDeck"]
-layout_mode = 2
-texture = ExtResource("4_1i77w")
-
-[node name="TextureRect4" type="TextureRect" parent="MarginContainer/EnemyDeck"]
-layout_mode = 2
-texture = ExtResource("5_oc6g0")
-
-[connection signal="ready" from="MarginContainer/PlayerDeck" to="MarginContainer/PlayerDeck/Card" method="ready"]
-[connection signal="mouse_entered" from="MarginContainer/PlayerDeck/Card" to="MarginContainer/PlayerDeck/Card" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/PlayerDeck/Card" to="MarginContainer/PlayerDeck/Card" method="_on_mouse_exited"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "HP: 100"
+label_settings = SubResource("LabelSettings_bhoou")

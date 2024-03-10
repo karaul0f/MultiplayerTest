@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4u35koixriab"]
+
+[ext_resource type="Texture2D" uid="uid://kt7wadbjdmbu" path="res://images/blank_attack_1.png" id="1_ej1q0"]
+[ext_resource type="Script" path="res://cards/card.gd" id="2_l7np4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o4cg1"]
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="Card" type="TextureRect"]
+texture = ExtResource("1_ej1q0")
+script = ExtResource("2_l7np4")
+
+[node name="CardInfo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.869
+anchor_right = 0.5
+anchor_bottom = 0.88
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Атака 2-12"
+label_settings = SubResource("LabelSettings_o4cg1")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
